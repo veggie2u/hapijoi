@@ -13,20 +13,38 @@ server.start((err) => {
     console.log(`Server running at: ${server.info.uri}`);
 });
 
-// hello query parameter
+// hello world
 server.route({
     method: 'GET',
     path: '/',
+    handler: function (request, reply) {
+        reply('Hello, world!');
+    }
+});
+
+// hello query parameter
+server.route({
+    method: 'GET',
+    path: '/hello',
     handler: function (request, reply) {
         let name = request.query.name ? encodeURIComponent(request.query.name) : 'world'
         reply(`Hello, ${name}!`);
     }
 });
 
+// hello path parameter
+server.route({
+    method: 'GET',
+    path: '/hello/{name}',
+    handler: function (request, reply) {
+        reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
+    }
+});
+
 // hello query parameter with validation
 server.route({
     method: 'GET',
-    path: '/hello',
+    path: '/validate',
     config: {
         validate: {
             query: {
@@ -43,10 +61,10 @@ server.route({
     }
 });
 
-// hello path parameter
+// hello path parameter with validation
 server.route({
     method: 'GET',
-    path: '/hello/{name}',
+    path: '/validate/{name}',
     config: {
         validate: {
             params: {
@@ -58,5 +76,3 @@ server.route({
         reply('Hello, ' + encodeURIComponent(request.params.name) + '!');
     }
 });
-
-
