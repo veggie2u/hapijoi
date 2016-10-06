@@ -15,4 +15,5 @@ node index.js
 * localhost:9000 => 'Hello World!'
 * localhost:9000/hello?name=Jim => 'Hello Jim!'
 * localhost:9000/hello/Bob => 'Hello Bob!'
-
+* localhost:9000/validate?name=Jim => 'Hello Jim'
+* localhost:9000/validate?name=bobsyouruncle => 400
