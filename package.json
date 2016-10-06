@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Demo server using hapi and joi",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Chris Ward",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/veggie2u/hapijoi"
+  },
   "dependencies": {
     "hapi": "15.1.1"
   }
