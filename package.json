@@ -10,6 +10,7 @@
     "url": "https://github.com/veggie2u/hapijoi"
   },
   "dependencies": {
-    "hapi": "15.1.1"
+    "hapi": "15.1.1",
+    "joi": "9.1.0"
   }
 }
