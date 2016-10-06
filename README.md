@@ -13,5 +13,6 @@ node index.js
 
 ##Endpoints
 * localhost:9000 => 'Hello World!'
-* localhost:9000?name=Jim => 'Hello Jim!'
-* localhost:9000/Bob => 'Hello Bob!'
+* localhost:9000/hello?name=Jim => 'Hello Jim!'
+* localhost:9000/hello/Bob => 'Hello Bob!'
+
