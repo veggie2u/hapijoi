@@ -6,11 +6,31 @@ const Joi = require('joi');
 const server = new Hapi.Server();
 server.connection({ port: 9000 });
 
+server.register([
+    // logging plugins
+    {
+        register: require('good'),
+        options: {
+            reporters: {
+                console: [
+                    {
+                        module: 'good-squeeze',
+                        name: 'Squeeze',
+                        args: [{response: '*', log: '*'}]
+                    },
+                    {module: 'good-console'},
+                    'stdout'
+                ]
+            }
+        }
+    }
+])
+
 server.start((err) => {
     if (err) {
         throw err;
     }
-    console.log(`Server running at: ${server.info.uri}`);
+    server.log(`Server running at: ${server.info.uri}`);
 });
 
 // hello world

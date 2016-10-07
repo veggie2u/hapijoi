@@ -10,6 +10,9 @@
     "url": "https://github.com/veggie2u/hapijoi"
   },
   "dependencies": {
+    "good": "7.0.2",
+    "good-console": "6.1.2",
+    "good-squeeze": "5.0.0",
     "hapi": "15.1.1",
     "joi": "9.1.0"
   }
