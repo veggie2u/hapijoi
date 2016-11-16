@@ -1,6 +1,7 @@
 #Hapi Hapi Joi Joi
 
 This is code for a simple web server using the node based Hapi server, and Joi, a validation library.
+This project and it's code is for a blog post that is located at 
 
 Note: the examples use ES6. The project was created on Node v6.2.2
 
@@ -17,3 +18,6 @@ node index.js
 * localhost:9000/hello/Bob => 'Hello Bob!'
 * localhost:9000/validate?name=Jim => 'Hello Jim'
 * localhost:9000/validate?name=bobsyouruncle => 400
+
+##Swagger
+* localhost:9000/documentation
