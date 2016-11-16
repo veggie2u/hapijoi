@@ -7,8 +7,8 @@ const server = new Hapi.Server();
 server.connection({ port: 9000 });
 
 server.register([
-    // logging plugins
     {
+        // logging plugins
         register: require('good'),
         options: {
             reporters: {
@@ -18,13 +18,36 @@ server.register([
                         name: 'Squeeze',
                         args: [{response: '*', log: '*'}]
                     },
-                    {module: 'good-console'},
+                    {
+                        module: 'good-console'
+                    },
                     'stdout'
                 ]
             }
         }
+    },
+    {
+        register: require('inert')
+    },
+    {
+        register: require('vision')
+    },
+    {
+        register: require('hapi-swagger'),
+        options: {
+            info: {
+                'title': 'Test API Documentation',
+                'version': '1.0.0'
+            }
+        }
+    }],
+    (err) => {
+        // let us know if there is an error loading plugins
+        if (err) {
+            throw err;
+        }
     }
-])
+);
 
 server.start((err) => {
     if (err) {
@@ -37,6 +60,11 @@ server.start((err) => {
 server.route({
     method: 'GET',
     path: '/',
+    config: {
+        description: 'Say Hello',
+        notes: 'A very simple hello world in hapi land',
+        tags: ['api']
+    },
     handler: function (request, reply) {
         reply('Hello, world!');
     }
@@ -47,7 +75,7 @@ server.route({
     method: 'GET',
     path: '/hello',
     handler: function (request, reply) {
-        let name = request.query.name ? encodeURIComponent(request.query.name) : 'world'
+        let name = request.query.name ? encodeURIComponent(request.query.name) : 'world';
         reply(`Hello, ${name}!`);
     }
 });
@@ -66,10 +94,13 @@ server.route({
     method: 'GET',
     path: '/validate',
     config: {
+        description: 'Validation example',
+        notes: 'Validate the name and age example.',
+        tags: ['api'],
         validate: {
             query: {
                 name: Joi.string().min(3).max(10).required(),
-                age: Joi.number().integer().min(1).max(50)
+                age: Joi.number().integer().min(1).max(50).description('min(1) max(50)')
             }
         }
     },
